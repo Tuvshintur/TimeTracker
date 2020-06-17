@@ -6,8 +6,9 @@ let totalSeconds = 0;
 let interval = undefined;
 
 function start() {
-    if (interval) return;
-    interval = setInterval(setTime, 1000);
+    if (!interval) {
+        interval = setInterval(setTime, 1000);
+    }
 }
 
 function pause() {
