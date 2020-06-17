@@ -1,6 +1,7 @@
 const hoursLabel = document.getElementById("hours");
 const minutesLabel = document.getElementById("minutes");
 const secondsLabel = document.getElementById("seconds");
+const historyTable = document.getElementById("history");
 let totalSeconds = 0;
 let interval;
 
@@ -10,6 +11,7 @@ function start() {
 
 function pause() {
     clearInterval(interval);
+    addRow();
 }
 
 function stop() {
@@ -18,6 +20,37 @@ function stop() {
     secondsLabel.innerHTML = "00";
     minutesLabel.innerHTML = "00";
     hoursLabel.innerHTML = "00";
+    clearRows();
+}
+
+function addRow() {
+    const rowCount = historyTable.rows.length;
+    const row = historyTable.insertRow(rowCount);
+    const cell1 = row.insertCell(0);
+    const cell2 = row.insertCell(1);
+    const cell3 = row.insertCell(2);
+    cell1.innerHTML = rowCount;
+    cell2.innerHTML = hoursLabel.innerHTML + ":" + minutesLabel.innerHTML + ":" + secondsLabel.innerHTML;
+    const date = new Date();
+    cell3.innerHTML =
+        pad(date.getMonth() + 1) +
+        "/" +
+        pad(date.getDay()) +
+        "/" +
+        date.getFullYear() +
+        " " +
+        pad(date.getHours()) +
+        ":" +
+        pad(date.getMinutes()) +
+        ":" +
+        pad(date.getSeconds());
+}
+
+function clearRows() {
+    const rowCount = historyTable.rows.length;
+    for (let i = 1; i < rowCount; i++) {
+        historyTable.deleteRow(1);
+    }
 }
 
 function setTime() {

@@ -4,18 +4,35 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>TimeTracker</title>
-        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.4/dist/css/uikit.min.css" />
     </head>
-    <body>
-        <div id="wrapper">
-            <div id="timer">
-                <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
+    <body class="uk-background-default uk-text-center">
+        <div class="uk-container">
+            <div id="timer" class="uk-heading-2xlarge">
+                <label id="hours" class="uk-text-center">00</label>
+                :
+                <label id="minutes" class="uk-text-center">00</label>
+                :
+                <label id="seconds" class="uk-text-center">00</label>
             </div>
             <div>
-                <button id="start">Start</button>
-                <button id="pause">Pause</button>
-                <button id="stop">Stop</button>
+                <button id="start" class="uk-button uk-button-primary">Start</button>
+                <button id="pause" class="uk-button uk-button-secondary">Pause</button>
+                <button id="stop" class="uk-button uk-button-danger">Stop</button>
             </div>
+            <table id="history" class="uk-table uk-table-hover uk-table-divide">
+                <caption>
+                    History
+                </caption>
+                <thead class="uk-text-center">
+                    <tr>
+                        <th>№</th>
+                        <th>Time</th>
+                        <th>Real Time</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
         <script src="./js/main.js"></script>
     </body>
