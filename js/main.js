@@ -3,7 +3,7 @@ const minutesLabel = document.getElementById("minutes");
 const secondsLabel = document.getElementById("seconds");
 const historyTable = document.getElementById("history");
 let totalSeconds = 0;
-let interval;
+let interval = undefined;
 
 function start() {
     interval = setInterval(setTime, 1000);
@@ -16,6 +16,7 @@ function pause() {
 
 function stop() {
     clearInterval(interval);
+    interval = undefined;
     totalSeconds = 0;
     secondsLabel.innerHTML = "00";
     minutesLabel.innerHTML = "00";
@@ -24,6 +25,7 @@ function stop() {
 }
 
 function addRow() {
+    if (!interval) return;
     const rowCount = historyTable.rows.length;
     const row = historyTable.insertRow(rowCount);
     const cell1 = row.insertCell(0);
@@ -44,10 +46,12 @@ function addRow() {
         pad(date.getMinutes()) +
         ":" +
         pad(date.getSeconds());
+    interval = undefined;
 }
 
 function clearRows() {
     const rowCount = historyTable.rows.length;
+    if (!rowCount) return;
     for (let i = 1; i < rowCount; i++) {
         historyTable.deleteRow(1);
     }
